@@ -1,0 +1,17 @@
+@startuml
+title ログイン処理 アクティビティ図
+
+start
+:ログイン画面表示;
+
+:ID・パスワード入力;
+
+if (認証成功?) then (Yes)
+  :ダッシュボード表示;
+else (No)
+  :エラーメッセージ表示;
+  :再入力;
+endif
+
+stop
+@enduml
