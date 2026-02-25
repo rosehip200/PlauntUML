@@ -1,17 +1,52 @@
 @startuml
-title ログイン処理 アクティビティ図
+title 商品問い合わせ〜購入（スイムレーン）
 
+' 見た目を少し整える（任意）
+skinparam shadowing false
+skinparam monochrome true
+skinparam activity {
+  BackgroundColor white
+  BorderColor black
+  FontColor black
+}
+skinparam defaultFontName "Meiryo"
+
+|顧客|
 start
-:ログイン画面表示;
+:商品を問い合わせる;
 
-:ID・パスワード入力;
+|店員|
+:在庫を確認する;
 
-if (認証成功?) then (Yes)
-  :ダッシュボード表示;
-else (No)
-  :エラーメッセージ表示;
-  :再入力;
+|販売管理システム|
+rectangle "<<データストア>>\n在庫情報" as Stock
+
+|店員|
+Stock --> :在庫を確認する;
+
+:在庫状況を\n伝える;
+
+|顧客|
+if (在庫あり？) then (在庫あり)
+  :商品を購入する;
+
+  |店員|
+  :システムに\n入力する;
+
+  |販売管理システム|
+  rectangle "<<データストア>>\n売上情報" as Sales
+
+  |店員|
+  :システムに\n入力する;
+  :商品を渡す;
+
+  |顧客|
+  :商品を\n受け取る;
+  stop
+
+else (売り切れ)
+  :売り切れ;
+  stop
 endif
 
-stop
 @enduml
