@@ -1,6 +1,7 @@
 @startuml
 title 商品問い合わせ〜購入（スイムレーン 9レーン例）
 
+
 ' 文字化け/潰れ対策（CI上でも安定しやすい）
 skinparam defaultFontName "Noto Sans CJK JP"
 skinparam activityFontName "Noto Sans CJK JP"
