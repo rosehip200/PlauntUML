@@ -2,28 +2,32 @@ name: Generate PlantUML Diagrams
 
 on:
   push:
+    branches: [ "main" ]
     paths:
-      - '**.puml'
+      - "docs/diagrams/**/*.puml"
+      - ".github/workflows/plantuml.yml"
+
+permissions:
+  contents: write
 
 jobs:
   plantuml:
     runs-on: ubuntu-latest
-
     steps:
-      - name: リポジトリ取得
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: PlantUML で SVG 生成
+      - name: Generate SVG
         run: |
           docker run --rm \
             -v ${{ github.workspace }}:/data \
             plantuml/plantuml \
             -tsvg docs/diagrams/*.puml
 
-      - name: 生成物をコミット
+      - name: Commit SVG
         run: |
-          git config --local user.name "github-actions"
-          git config --local user.email "actions@github.com"
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
           git add docs/diagrams/*.svg
           git commit -m "Auto-generate SVG diagrams" || echo "No changes"
           git push
