@@ -1,6 +1,7 @@
 @startuml
 title 商品問い合わせ〜購入（スイムレーン）
 
+
 skinparam shadowing false
 skinparam monochrome true
 skinparam activity {
