@@ -1,14 +1,16 @@
 @startuml
 title 商品問い合わせ〜購入（スイムレーン）
 
+' 文字化け/潰れ対策（CI上でも安定しやすい）
+skinparam defaultFontName "Noto Sans CJK JP"
+skinparam activityFontName "Noto Sans CJK JP"
+skinparam titleFontName "Noto Sans CJK JP"
 
 skinparam shadowing false
 skinparam monochrome true
-skinparam activity {
-  BackgroundColor white
-  BorderColor black
-  FontColor black
-}
+
+' 縦長すぎて縮小されるのを避けたい場合（任意）
+' left to right direction
 
 |顧客|
 start
