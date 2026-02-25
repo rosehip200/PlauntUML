@@ -6,6 +6,7 @@ start
 
 :ID・パスワード入力;
 
+
 if (認証成功?) then (Yes)
   :ダッシュボード表示;
 else (No)
