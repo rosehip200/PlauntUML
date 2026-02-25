@@ -14,15 +14,16 @@ jobs:
   plantuml:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+
+      - name: Install PlantUML + fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y plantuml graphviz fonts-noto-cjk
 
       - name: Generate SVG
         run: |
-          docker run --rm \
-            -v ${{ github.workspace }}:/data \
-            plantuml/plantuml \
-            -tsvg docs/diagrams/*.puml
+          plantuml -charset UTF-8 -tsvg docs/diagrams/*.puml
 
       - name: Commit SVG
         run: |
