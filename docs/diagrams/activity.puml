@@ -1,7 +1,6 @@
 @startuml
 title 商品問い合わせ〜購入（スイムレーン）
 
-' 見た目を少し整える（任意）
 skinparam shadowing false
 skinparam monochrome true
 skinparam activity {
@@ -9,7 +8,6 @@ skinparam activity {
   BorderColor black
   FontColor black
 }
-skinparam defaultFontName "Meiryo"
 
 |顧客|
 start
@@ -19,11 +17,9 @@ start
 :在庫を確認する;
 
 |販売管理システム|
-rectangle "<<データストア>>\n在庫情報" as Stock
+:<<データストア>>\n在庫情報;
 
 |店員|
-Stock --> :在庫を確認する;
-
 :在庫状況を\n伝える;
 
 |顧客|
@@ -34,14 +30,13 @@ if (在庫あり？) then (在庫あり)
   :システムに\n入力する;
 
   |販売管理システム|
-  rectangle "<<データストア>>\n売上情報" as Sales
+  :<<データストア>>\n売上情報;
 
   |店員|
-  :システムに\n入力する;
   :商品を渡す;
 
   |顧客|
-  :商品を\n受け取る;
+  :商品を受け取る;
   stop
 
 else (売り切れ)
